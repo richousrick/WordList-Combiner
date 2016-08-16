@@ -52,8 +52,8 @@ public class Combiner {
 		BufferedReader bf = new BufferedReader(new FileReader(f1));
 		String line;
 		while ((line = bf.readLine())!=null){
-			// ignore all lines starting with '#'
-			if(!line.startsWith("#")){
+			// ignore all lines starting with '#' or '/'
+			if(!(line.startsWith("#")||line.startsWith("/"))){
 				map.add(line);
 				bw.write(line+"\n");
 			}
@@ -69,7 +69,7 @@ public class Combiner {
 		bf = new BufferedReader(new FileReader(f2));
 		while ((line = bf.readLine())!=null){
 			// ignore all lines already in the outfile and beginning with '#'
-			if(!map.contains(line)&&!line.startsWith("#")){
+			if(!map.contains(line)&&!(line.startsWith("#")||line.startsWith("/"))){
 				bw.write(line+"\n");
 			}
 			// print percentage done
